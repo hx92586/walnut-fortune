@@ -60,266 +60,49 @@ const goalCopy = {
   }
 };
 
-const textureFeatureNotes = {
-  "蟠龙纹": "这类核桃纹路接近蟠龙纹风格，视觉张力强。",
-  "蚂蚁纹": "这类核桃纹路细密紧凑，带一点蚂蚁纹式的细节观赏性。",
-  "水龙纹": "这类核桃纹路有流动感，接近水龙纹的灵动气质。",
-  "满天星": "这类核桃纹点细碎丰富，有接近满天星的视觉层次。"
-};
-
-const forbiddenCombinations = [
-  "白狮子元宝",
-  "白狮子蛇头",
-  "白狮子牛角",
-  "蟠龙纹六棱",
-  "满天星六棱",
-  "蚂蚁纹元宝",
-  "水龙纹牛角"
+const walnutVarieties = [
+  { name: "白狮子", category: "狮子头", description: "经典文玩核桃品种，辨识度高，受欢迎程度广。", collectValue: 5, playValue: 4, suitableStyle: ["老派经典", "盘玩舒适", "性价比"], suitableGoal: ["人缘", "求职", "心态"], zodiac: ["金牛座", "巨蟹座", "天秤座", "双鱼座"] },
+  { name: "南疆石", category: "狮子头", description: "皮质硬、密度高，适合长期盘玩和收藏。", collectValue: 5, playValue: 4, suitableStyle: ["收藏级", "霸气", "老派经典"], suitableGoal: ["财运", "求职", "心态"], zodiac: ["金牛座", "天蝎座", "摩羯座"] },
+  { name: "苹果园", category: "狮子头", description: "纹路漂亮、形态圆润，颜值高，适合新手和日常盘玩。", collectValue: 4, playValue: 5, suitableStyle: ["盘玩舒适", "性价比", "老派经典"], suitableGoal: ["学业", "人缘", "心态"], zodiac: ["双子座", "处女座", "天秤座", "双鱼座"] },
+  { name: "四座楼", category: "狮子头", description: "端正大气，老玩家认可度高，整体气质稳。", collectValue: 5, playValue: 4, suitableStyle: ["霸气", "收藏级", "老派经典"], suitableGoal: ["财运", "求职"], zodiac: ["处女座", "摩羯座"] },
+  { name: "官帽", category: "官帽", description: "轮廓利落，有向上气势，辨识度明确。", collectValue: 4, playValue: 4, suitableStyle: ["霸气", "收藏级"], suitableGoal: ["财运", "求职"], zodiac: ["白羊座", "狮子座", "摩羯座"] },
+  { name: "磨盘", category: "狮子头", description: "敦实低调，有复古器物感，手感厚实。", collectValue: 4, playValue: 5, suitableStyle: ["盘玩舒适", "老派经典", "性价比"], suitableGoal: ["健康", "心态", "学业"], zodiac: ["巨蟹座", "双鱼座"] },
+  { name: "鸡心", category: "鸡心", description: "古味明显，个性不张扬，适合老派小众审美。", collectValue: 3, playValue: 4, suitableStyle: ["老派经典", "性价比"], suitableGoal: ["人缘", "心态"], zodiac: ["巨蟹座", "天蝎座"] },
+  { name: "虎头", category: "虎头", description: "骨架感强，气势直接，是传统玩家熟悉的硬朗品种。", collectValue: 4, playValue: 4, suitableStyle: ["霸气", "老派经典"], suitableGoal: ["财运", "求职"], zodiac: ["白羊座", "狮子座", "射手座"] },
+  { name: "公子帽", category: "公子帽", description: "线条讲究，气质文雅，适合清爽手感和雅致审美。", collectValue: 4, playValue: 4, suitableStyle: ["盘玩舒适", "性价比", "老派经典"], suitableGoal: ["学业", "人缘", "心态"], zodiac: ["天秤座", "双鱼座"] },
+  { name: "麦穗虎头", category: "虎头", description: "纹理像麦穗铺开，气势里带细节。", collectValue: 4, playValue: 4, suitableStyle: ["霸气", "稀有"], suitableGoal: ["财运", "学业"], zodiac: ["白羊座", "射手座"] },
+  { name: "老款狮子头", category: "狮子头", description: "经典耐看，不靠花哨取胜，适合长期陪伴型盘玩。", collectValue: 5, playValue: 5, suitableStyle: ["老派经典", "盘玩舒适"], suitableGoal: ["财运", "健康", "心态"], zodiac: ["金牛座", "摩羯座"] },
+  { name: "平谷元宝", category: "元宝", description: "造型饱满，名字寓意吉祥，适合偏好讨彩头和收藏感的玩家。", collectValue: 4, playValue: 4, suitableStyle: ["收藏级", "性价比"], suitableGoal: ["财运", "人缘"], zodiac: ["金牛座", "天秤座"] },
+  { name: "陨石元宝", category: "元宝", description: "题材感强，观感更特别，适合喜欢稀有和辨识度的玩家。", collectValue: 5, playValue: 3, suitableStyle: ["稀有", "收藏级"], suitableGoal: ["财运", "心态"], zodiac: ["水瓶座", "天蝎座"] },
+  { name: "龙眼元宝", category: "元宝", description: "造型讨巧，兼具元宝寓意和细节观赏性。", collectValue: 4, playValue: 4, suitableStyle: ["稀有", "收藏级"], suitableGoal: ["人缘", "学业"], zodiac: ["双子座", "水瓶座"] },
+  { name: "满天星", category: "纹路类", description: "纹点细碎丰富，视觉层次强，适合喜欢细节观赏性的玩家。", collectValue: 4, playValue: 3, suitableStyle: ["稀有", "收藏级"], suitableGoal: ["学业", "人缘"], zodiac: ["双子座", "水瓶座"] },
+  { name: "蟠龙纹", category: "纹路类", description: "纹路起伏强，视觉张力足，整体存在感更强。", collectValue: 5, playValue: 3, suitableStyle: ["霸气", "稀有", "收藏级"], suitableGoal: ["财运", "求职"], zodiac: ["白羊座", "狮子座", "天蝎座"] },
+  { name: "蚂蚁纹", category: "纹路类", description: "纹理密集细碎，玩味很足，适合细节控。", collectValue: 4, playValue: 3, suitableStyle: ["稀有", "收藏级"], suitableGoal: ["学业", "心态"], zodiac: ["处女座", "水瓶座"] },
+  { name: "水龙纹", category: "纹路类", description: "纹路有流动感，视觉灵动，适合个性化审美。", collectValue: 4, playValue: 4, suitableStyle: ["稀有", "盘玩舒适"], suitableGoal: ["人缘", "学业", "求职"], zodiac: ["双子座", "射手座", "水瓶座"] },
+  { name: "灯笼", category: "灯笼", description: "形态饱满，视觉喜庆，握感圆润。", collectValue: 3, playValue: 5, suitableStyle: ["盘玩舒适", "性价比"], suitableGoal: ["健康", "人缘", "心态"], zodiac: ["巨蟹座", "双鱼座"] },
+  { name: "盘龙纹", category: "纹路类", description: "纹路盘绕感明显，视觉张力强，适合偏好霸气风格的玩家。", collectValue: 5, playValue: 3, suitableStyle: ["霸气", "稀有", "收藏级"], suitableGoal: ["财运", "求职"], zodiac: ["白羊座", "天蝎座"] },
+  { name: "狮虎兽", category: "异兽类", description: "名字和造型都带话题感，适合喜欢个性化收藏的玩家。", collectValue: 5, playValue: 3, suitableStyle: ["霸气", "稀有", "收藏级"], suitableGoal: ["求职", "财运"], zodiac: ["狮子座", "水瓶座"] },
+  { name: "门墩", category: "器型类", description: "造型敦实稳重，有老物件气质。", collectValue: 4, playValue: 4, suitableStyle: ["老派经典", "盘玩舒适"], suitableGoal: ["心态", "财运"], zodiac: ["金牛座", "摩羯座"] },
+  { name: "马蹄", category: "器型类", description: "造型有辨识度，适合喜欢传统奇趣器型的玩家。", collectValue: 4, playValue: 4, suitableStyle: ["稀有", "性价比"], suitableGoal: ["人缘", "求职"], zodiac: ["射手座", "水瓶座"] },
+  { name: "麒麟纹", category: "纹路类", description: "纹路有瑞兽意象，寓意感强，适合收藏和讨彩头。", collectValue: 5, playValue: 3, suitableStyle: ["收藏级", "霸气"], suitableGoal: ["财运", "求职"], zodiac: ["狮子座", "摩羯座"] },
+  { name: "蛤蟆头", category: "器型类", description: "造型有趣，小众辨识度高，适合喜欢玩味的玩家。", collectValue: 4, playValue: 4, suitableStyle: ["稀有", "性价比"], suitableGoal: ["人缘", "心态"], zodiac: ["双子座", "水瓶座"] },
+  { name: "盘山公子帽", category: "公子帽", description: "公子帽体系里更有地域和细分味道，气质文雅。", collectValue: 4, playValue: 4, suitableStyle: ["老派经典", "收藏级"], suitableGoal: ["学业", "人缘"], zodiac: ["天秤座", "处女座"] },
+  { name: "宫灯", category: "灯笼", description: "造型端正喜庆，适合偏好圆润器型和好寓意的玩家。", collectValue: 4, playValue: 4, suitableStyle: ["盘玩舒适", "老派经典"], suitableGoal: ["人缘", "健康"], zodiac: ["巨蟹座", "双鱼座"] },
+  { name: "大粗筋", category: "粗筋类", description: "纹路筋脉粗壮，手感明确，视觉力量感强。", collectValue: 4, playValue: 4, suitableStyle: ["霸气", "盘玩舒适"], suitableGoal: ["求职", "财运"], zodiac: ["白羊座", "狮子座"] },
+  { name: "千佛山小粗筋", category: "粗筋类", description: "细分味道更足，纹路筋脉清楚，适合进阶玩家关注。", collectValue: 5, playValue: 4, suitableStyle: ["稀有", "收藏级"], suitableGoal: ["学业", "心态"], zodiac: ["处女座", "摩羯座"] },
+  { name: "血麒麟", category: "纹路类", description: "名字气势强，寓意和观赏性都更突出。", collectValue: 5, playValue: 3, suitableStyle: ["霸气", "稀有", "收藏级"], suitableGoal: ["财运", "求职"], zodiac: ["天蝎座", "狮子座"] },
+  { name: "南瓜墩", category: "器型类", description: "造型敦实圆润，盘玩亲和，视觉讨喜。", collectValue: 4, playValue: 5, suitableStyle: ["盘玩舒适", "性价比"], suitableGoal: ["健康", "心态", "人缘"], zodiac: ["巨蟹座", "金牛座"] }
 ];
 
-const curatedRecommendationPool = [
-  {
-    name: "南疆石",
-    group: "independent",
-    base: "南疆石",
-    goals: ["财运", "求职", "心态"],
-    styles: ["霸气", "收藏级", "老派经典"],
-    zodiacs: ["金牛座", "天蝎座", "摩羯座"],
-    texture: "蟠龙纹",
-    reason: "南疆石皮质硬、密度高，包浆周期长，适合重视长期盘玩和收藏价值的玩家。",
-    play: "适合净手慢盘，少刷少油，耐心观察颜色和皮质变化。"
-  },
-  {
-    name: "南疆石四棱",
-    group: "multiRidge",
-    base: "南疆石",
-    goals: ["财运", "求职"],
-    styles: ["霸气", "收藏级"],
-    zodiacs: ["金牛座", "摩羯座"],
-    texture: "蟠龙纹",
-    reason: "南疆石皮质硬、密度高，四棱形制稀有且辨识度强，适合重视长期盘玩和收藏价值的玩家。",
-    play: "棱线处不要急刷，慢盘为主，让边角自然过渡。"
-  },
-  {
-    name: "南疆石五棱",
-    group: "multiRidge",
-    base: "南疆石",
-    goals: ["财运", "心态"],
-    styles: ["稀有", "收藏级"],
-    zodiacs: ["金牛座", "天蝎座", "摩羯座"],
-    texture: "蚂蚁纹",
-    reason: "南疆石五棱在形制上更少见，皮质硬、密度高，适合偏好稀有感和收藏感的玩家。",
-    play: "适合短时多次慢盘，避免过度用力磨损棱线。"
-  },
-  {
-    name: "苹果园",
-    group: "independent",
-    base: "苹果园",
-    goals: ["学业", "人缘", "心态"],
-    styles: ["盘玩舒适", "性价比", "老派经典"],
-    zodiacs: ["双子座", "处女座", "天秤座", "双鱼座"],
-    texture: "满天星",
-    reason: "苹果园纹路漂亮、形态圆润，颜值友好，适合新手和日常盘玩玩家。",
-    play: "上手轻松，适合每日少量盘玩，保持干净即可。"
-  },
-  {
-    name: "苹果园三棱",
-    group: "multiRidge",
-    base: "苹果园",
-    goals: ["学业", "人缘"],
-    styles: ["稀有", "收藏级"],
-    zodiacs: ["双子座", "处女座", "天秤座"],
-    texture: "满天星",
-    reason: "苹果园三棱兼具圆润底子和特殊形制，观赏性更强，适合喜欢精巧辨识度的玩家。",
-    play: "盘玩时注意棱线和窝底，轻盘慢养更稳妥。"
-  },
-  {
-    name: "白狮子",
-    group: "independent",
-    base: "白狮子",
-    goals: ["财运", "求职", "人缘", "心态"],
-    styles: ["老派经典", "盘玩舒适", "性价比"],
-    zodiacs: ["金牛座", "巨蟹座", "天秤座", "双鱼座"],
-    texture: "水龙纹",
-    reason: "白狮子是经典文玩核桃品种，辨识度高，受欢迎程度广，适合入门到进阶玩家长期盘玩。",
-    play: "白狮子适合日常手盘，注意净手和阴凉静置，别急着追求快速上色。"
-  },
-  {
-    name: "四座楼",
-    group: "independent",
-    base: "四座楼",
-    goals: ["财运", "求职"],
-    styles: ["霸气", "收藏级", "老派经典"],
-    zodiacs: ["摩羯座", "处女座"],
-    texture: "蟠龙纹",
-    reason: "四座楼端正大气、经典谱系清晰，适合喜欢稳重器型和老派审美的玩家。",
-    play: "盘玩时先稳住底色，少油少汗，避免急躁刷纹。"
-  },
-  {
-    name: "官帽",
-    group: "independent",
-    base: "官帽",
-    goals: ["财运", "求职"],
-    styles: ["霸气", "收藏级"],
-    zodiacs: ["白羊座", "狮子座"],
-    texture: "蟠龙纹",
-    reason: "官帽轮廓利落、气场明确，适合需要稳场和提升精神头的日子。",
-    play: "适合干手慢盘，盘后自然放置，让纹路层次慢慢出来。"
-  },
-  {
-    name: "磨盘",
-    group: "independent",
-    base: "磨盘",
-    goals: ["健康", "心态", "学业"],
-    styles: ["盘玩舒适", "老派经典", "性价比"],
-    zodiacs: ["巨蟹座", "双鱼座"],
-    texture: "水龙纹",
-    reason: "磨盘敦实耐看、手感厚实，适合偏好舒缓节奏和复古器物感的玩家。",
-    play: "适合放慢节奏轻盘，盘到微热就停，让手和核桃都歇一歇。"
-  },
-  {
-    name: "鸡心",
-    group: "independent",
-    base: "鸡心",
-    goals: ["人缘", "心态"],
-    styles: ["老派经典", "性价比"],
-    zodiacs: ["巨蟹座", "天蝎座"],
-    texture: "蚂蚁纹",
-    reason: "鸡心古味明显、个性不张扬，适合喜欢老派小众气质的玩家。",
-    play: "适合安静慢盘，保持手部干净，不必追求短期变化。"
-  },
-  {
-    name: "虎头",
-    group: "independent",
-    base: "虎头",
-    goals: ["财运", "求职"],
-    styles: ["霸气", "老派经典"],
-    zodiacs: ["白羊座", "狮子座", "射手座"],
-    texture: "蟠龙纹",
-    reason: "虎头骨架感强、气势直接，适合偏好硬朗风格和传统玩家语境的人。",
-    play: "上手有力量感，但盘玩仍以轻柔均匀为主。"
-  },
-  {
-    name: "公子帽",
-    group: "independent",
-    base: "公子帽",
-    goals: ["学业", "人缘", "心态"],
-    styles: ["盘玩舒适", "性价比", "老派经典"],
-    zodiacs: ["天秤座", "双鱼座"],
-    texture: "水龙纹",
-    reason: "公子帽线条讲究、气质文雅，适合偏好清爽手感和雅致造型的玩家。",
-    play: "适合日常轻盘，注意边缘和窝底的清洁。"
-  },
-  {
-    name: "麦穗虎头",
-    group: "independent",
-    base: "麦穗虎头",
-    goals: ["财运", "学业"],
-    styles: ["霸气", "稀有"],
-    zodiacs: ["白羊座", "射手座"],
-    texture: "蚂蚁纹",
-    reason: "麦穗虎头纹理像麦穗铺开，气势里带细节，适合喜欢硬朗又有观赏点的玩家。",
-    play: "纹路深浅有层次，适合边盘边观察，不宜重刷。"
-  },
-  {
-    name: "老款狮子头",
-    group: "independent",
-    base: "老款狮子头",
-    goals: ["财运", "健康", "心态"],
-    styles: ["老派经典", "盘玩舒适"],
-    zodiacs: ["金牛座", "摩羯座"],
-    texture: "水龙纹",
-    reason: "老款狮子头经典耐看，不靠花哨取胜，适合重视长期陪伴感和稳定审美的玩家。",
-    play: "适合长期盘玩，少量多次，慢慢养出温润感。"
-  },
-  {
-    name: "平谷元宝",
-    group: "special",
-    base: "元宝",
-    goals: ["财运", "人缘"],
-    styles: ["收藏级", "性价比"],
-    zodiacs: ["金牛座", "天秤座"],
-    texture: "满天星",
-    reason: "平谷元宝造型饱满，名字寓意吉祥，适合偏好讨彩头和收藏感的玩家。",
-    play: "适合净手轻盘，重点保持整体圆润感和自然光泽。"
-  },
-  {
-    name: "陨石元宝",
-    group: "special",
-    base: "元宝",
-    goals: ["财运", "心态"],
-    styles: ["稀有", "收藏级"],
-    zodiacs: ["水瓶座", "天蝎座"],
-    texture: "蚂蚁纹",
-    reason: "陨石元宝名字和观感都更有稀有感，适合喜欢特别题材和辨识度的玩家。",
-    play: "适合轻盘慢养，避免过度清理影响自然质感。"
-  },
-  {
-    name: "龙眼元宝",
-    group: "special",
-    base: "元宝",
-    goals: ["人缘", "学业"],
-    styles: ["稀有", "收藏级"],
-    zodiacs: ["双子座", "水瓶座"],
-    texture: "水龙纹",
-    reason: "龙眼元宝造型讨巧，兼具元宝寓意和细节观赏性，适合喜欢灵动感的玩家。",
-    play: "适合短时多次盘玩，保留纹路里的自然层次。"
-  },
-  {
-    name: "蛇头",
-    group: "special",
-    base: "蛇头",
-    goals: ["求职", "人缘"],
-    styles: ["霸气", "稀有"],
-    zodiacs: ["白羊座", "天蝎座"],
-    texture: "蟠龙纹",
-    reason: "蛇头属于辨识度很强的特殊品种，适合喜欢个性和话题感的玩家。",
-    play: "盘玩时别急着追求均匀上色，先稳定手感和清洁。"
-  },
-  {
-    name: "牛角",
-    group: "special",
-    base: "牛角",
-    goals: ["财运", "求职"],
-    styles: ["霸气", "收藏级"],
-    zodiacs: ["白羊座", "狮子座", "摩羯座"],
-    texture: "蟠龙纹",
-    reason: "牛角造型有冲劲和辨识度，适合偏好硬朗气场与特殊形制的玩家。",
-    play: "适合轻柔均匀地盘，避免在尖角处过度用力。"
-  },
-  {
-    name: "连体",
-    group: "special",
-    base: "连体",
-    goals: ["财运", "人缘"],
-    styles: ["稀有", "收藏级"],
-    zodiacs: ["金牛座", "天秤座", "水瓶座"],
-    texture: "满天星",
-    reason: "连体属于特殊形制，话题感和稀有感更强，适合偏好收藏辨识度的玩家。",
-    play: "适合少盘多看，注意连接处清洁，避免磕碰。"
-  },
-  {
-    name: "双胞胎",
-    group: "special",
-    base: "双胞胎",
-    goals: ["人缘", "心态"],
-    styles: ["稀有", "收藏级"],
-    zodiacs: ["双子座", "天秤座"],
-    texture: "满天星",
-    reason: "双胞胎有成对意象，趣味和话题性强，适合偏好稀有感和人缘气场的玩家。",
-    play: "盘玩时注意两侧受力均匀，避免一边变化过快。"
-  },
-  {
-    name: "三联体",
-    group: "special",
-    base: "三联体",
-    goals: ["财运", "求职"],
-    styles: ["稀有", "收藏级"],
-    zodiacs: ["射手座", "水瓶座"],
-    texture: "蟠龙纹",
-    reason: "三联体属于更有话题性的特殊形制，适合喜欢稀有和强辨识度的玩家。",
-    play: "适合轻拿轻放，少盘多养，重点防磕碰。"
-  }
+const specialShapes = [
+  { name: "三棱", type: "多棱类", rarity: 4, description: "多棱异型，造型特别，辨识度高。" },
+  { name: "四棱", type: "多棱类", rarity: 5, description: "多棱异型，棱线更清楚，收藏辨识度强。" },
+  { name: "五棱", type: "多棱类", rarity: 6, description: "多棱异型，稀有度更高，适合偏收藏的玩家。" },
+  { name: "六棱", type: "多棱类", rarity: 7, description: "多棱异型，少见且话题性强，更偏收藏展示。" },
+  { name: "连体", type: "连体类", rarity: 5, description: "连体类异型，整体感特殊，收藏话题性高。" },
+  { name: "牛角", type: "连体类", rarity: 5, description: "连体类异型，造型张力强，收藏话题性高。" },
+  { name: "半壁", type: "半壁类", rarity: 4, description: "半壁类异型，形制有趣，辨识度高。" },
+  { name: "蛇头", type: "蛇头类", rarity: 5, description: "蛇头类异型，个性强，适合喜欢特殊造型的玩家。" }
 ];
 
 const luckyColors = ["朱砂红", "鎏金色", "沉香棕", "松石绿", "蜜蜡黄", "月白", "青瓷蓝", "乌木黑", "宣纸白", "檀木褐"];
@@ -421,30 +204,69 @@ function chooseByScore(items, scorer) {
     .sort((a, b) => b.score - a.score)[0].item;
 }
 
-function validateRecommendation(recommendation) {
-  const hasForbiddenName = forbiddenCombinations.includes(recommendation.name);
-  const isTextureAsProduct = ["蟠龙纹", "蚂蚁纹", "水龙纹", "满天星"].some((texture) => recommendation.name.startsWith(texture));
-  const hasUnsafeMultiRidge = /[三四五六]棱$/.test(recommendation.name) && !["南疆石", "苹果园"].includes(recommendation.base);
+function shouldUseSpecialShape(style, seed) {
+  let chance = 30;
 
-  return !hasForbiddenName && !isTextureAsProduct && !hasUnsafeMultiRidge;
+  if (["稀有", "收藏级", "霸气"].includes(style)) {
+    chance += 25;
+  }
+
+  if (["盘玩舒适", "性价比", "老派经典"].includes(style)) {
+    chance -= 20;
+  }
+
+  return seed % 100 < chance;
 }
 
-function scoreRecommendation(item, goal, style, profile, zodiac, seed) {
-  const goalScore = item.goals.includes(goal) ? 8 : 0;
-  const styleScore = item.styles.includes(style) ? 8 : 0;
-  const zodiacScore = item.zodiacs.includes(zodiac) || profile.preferredBases.includes(item.base) ? 5 : 0;
-  const curatedBonus = item.group === "independent" ? 2 : 0;
-  const collectionBonus = ["收藏级", "稀有"].includes(style) && item.group !== "independent" ? 3 : 0;
-  const comfortBonus = ["盘玩舒适", "性价比"].includes(style) && item.group === "independent" ? 3 : 0;
-  const sampleBonus = zodiac === "金牛座" && goal === "求职" && style === "收藏级" && item.name === "南疆石四棱" ? 20 : 0;
+function scoreVariety(variety, goal, style, profile, zodiac, seed) {
+  const styleScore = variety.suitableStyle.includes(style) ? 10 : 0;
+  const goalScore = variety.suitableGoal.includes(goal) ? 8 : 0;
+  const zodiacScore = variety.zodiac.includes(zodiac) || profile.preferredBases.includes(variety.name) ? 5 : 0;
+  const collectScore = ["稀有", "收藏级", "霸气"].includes(style) ? variety.collectValue : 0;
+  const playScore = ["盘玩舒适", "性价比", "老派经典"].includes(style) ? variety.playValue : 0;
+  const goalToneScore = goal === "财运" || goal === "求职" ? variety.collectValue : variety.playValue;
 
-  return goalScore + styleScore + zodiacScore + curatedBonus + collectionBonus + comfortBonus + sampleBonus + (seed % 5);
+  return styleScore + goalScore + zodiacScore + collectScore + playScore + goalToneScore + (seed % 5);
 }
 
-function chooseRecommendation(goal, style, zodiac, seed) {
+function scoreSpecialShape(shape, goal, style, seed) {
+  const shapeSeed = stableHash(`${shape.name}-${seed}`) % 7;
+  const styleScore = ["稀有", "收藏级", "霸气"].includes(style) ? shape.rarity : Math.ceil(shape.rarity / 2);
+  const comfortPenalty = ["盘玩舒适", "性价比", "老派经典"].includes(style) ? -shape.rarity : 0;
+  const goalBonus = ["财运", "求职"].includes(goal) && ["多棱类", "连体类"].includes(shape.type) ? 3 : 0;
+  const moodBonus = ["心态", "健康"].includes(goal) && shape.name === "半壁" ? 2 : 0;
+  const styleShapeBonus =
+    (style === "霸气" && ["牛角", "蛇头", "六棱"].includes(shape.name) ? 5 : 0) +
+    (style === "收藏级" && ["四棱", "五棱", "连体"].includes(shape.name) ? 5 : 0) +
+    (style === "稀有" && ["蛇头", "连体", "五棱", "六棱"].includes(shape.name) ? 4 : 0);
+
+  return styleScore + comfortPenalty + goalBonus + moodBonus + styleShapeBonus + shapeSeed;
+}
+
+function buildRecommendationReason(variety, shape, goal, keywords) {
+  if (!shape) {
+    return `${variety.name}是${variety.category}里的常见推荐方向，${variety.description}今天你的关键词偏向“${keywords}”，因此推荐更贴近日常盘玩和稳定气场的${variety.name}。`;
+  }
+
+  return `${variety.name}是${variety.category}里的代表方向，${variety.description}${shape.name}属于${shape.type}异型，${shape.description}今天你的关键词偏向“${keywords}”，因此推荐更有辨识度的${variety.name}${shape.name}。`;
+}
+
+function chooseRecommendation(goal, style, zodiac, seed, keywords) {
   const profile = zodiacProfiles[zodiac];
-  const safePool = curatedRecommendationPool.filter(validateRecommendation);
-  return chooseByScore(safePool, (item) => scoreRecommendation(item, goal, style, profile, zodiac, seed));
+  const variety = chooseByScore(walnutVarieties, (item) => scoreVariety(item, goal, style, profile, zodiac, seed));
+  const shape = shouldUseSpecialShape(style, seed + variety.name.length)
+    ? chooseByScore(specialShapes, (item) => scoreSpecialShape(item, goal, style, seed + variety.name.length))
+    : null;
+
+  return {
+    name: shape ? `${variety.name}${shape.name}` : variety.name,
+    variety,
+    shape,
+    reason: buildRecommendationReason(variety, shape, goal, keywords),
+    play: shape
+      ? `${variety.name}叠加${shape.name}异型后，盘玩时要照顾边角和特殊结构，轻盘慢养更稳。`
+      : `${variety.name}适合日常净手慢盘，先把底色盘稳，再观察包浆变化。`
+  };
 }
 
 function buildResult({ zodiac, birthday, today, goal, walnutStyle }) {
@@ -463,11 +285,10 @@ function buildResult({ zodiac, birthday, today, goal, walnutStyle }) {
     }
   });
   const keywords = Array.from(keywordSet).slice(0, 3).join("、");
-  const recommendation = chooseRecommendation(goal, walnutStyle, zodiac, seed);
+  const recommendation = chooseRecommendation(goal, walnutStyle, zodiac, seed, keywords);
   const luckyColor = pick(luckyColors, seed + score);
   const luckyNumber = ((seed + score) % 99) + 1;
-  const textureNote = recommendation.texture ? textureFeatureNotes[recommendation.texture] : "";
-  const reason = `${recommendation.reason}${textureNote}与${zodiac}“${profile.trait}”的节奏相合，也贴近你今天想提升的「${goal}」方向。`;
+  const reason = `${recommendation.reason}这也与${zodiac}“${profile.trait}”的节奏相合，贴近你今天想提升的「${goal}」方向。`;
 
   return {
     score,
