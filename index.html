@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>核桃好运签</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="page-shell">
+    <section class="hero">
+      <div class="seal-mark" aria-hidden="true">签</div>
+      <div class="hero-copy">
+        <p class="eyebrow">今日运势 · 文玩核桃推荐</p>
+        <h1>核桃好运签</h1>
+        <p class="intro">输入你的生日（月日）、当前目标和偏好风格，系统会自动识别星座，并结合今天的日期生成专属于你的今日好运签与文玩核桃推荐。</p>
+      </div>
+    </section>
+
+    <section class="fortune-layout" aria-label="好运签互动工具">
+      <form class="fortune-form" id="fortuneForm">
+        <div class="form-header">
+          <span class="small-seal">开签</span>
+          <h2>写下今日心念</h2>
+        </div>
+
+        <div class="field">
+          <span>生日</span>
+          <div class="birthday-selects">
+            <label>
+              <span class="sr-only">月份</span>
+              <select id="birthMonth" required>
+                <option value="">月份</option>
+              </select>
+            </label>
+            <label>
+              <span class="sr-only">日期</span>
+              <select id="birthDay" required>
+                <option value="">日期</option>
+              </select>
+            </label>
+          </div>
+          <small class="field-hint">请选择生日</small>
+        </div>
+
+        <fieldset class="field-group">
+          <legend>当前目标</legend>
+          <div class="choice-grid" id="goalChoices">
+            <label><input type="radio" name="goal" value="财运" required><span>财运</span></label>
+            <label><input type="radio" name="goal" value="求职"><span>求职</span></label>
+            <label><input type="radio" name="goal" value="学业"><span>学业</span></label>
+            <label><input type="radio" name="goal" value="人缘"><span>人缘</span></label>
+            <label><input type="radio" name="goal" value="健康"><span>健康</span></label>
+            <label><input type="radio" name="goal" value="心态"><span>心态</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field-group">
+          <legend>偏好风格</legend>
+          <div class="choice-grid style-grid" id="styleChoices">
+            <label><input type="radio" name="walnutStyle" value="霸气" required><span>霸气</span></label>
+            <label><input type="radio" name="walnutStyle" value="稀有"><span>稀有</span></label>
+            <label><input type="radio" name="walnutStyle" value="收藏级"><span>收藏级</span></label>
+            <label><input type="radio" name="walnutStyle" value="老派经典"><span>老派经典</span></label>
+            <label><input type="radio" name="walnutStyle" value="盘玩舒适"><span>盘玩舒适</span></label>
+            <label><input type="radio" name="walnutStyle" value="性价比"><span>性价比</span></label>
+          </div>
+        </fieldset>
+
+        <button class="draw-button" type="submit">抽取今日好运签</button>
+      </form>
+
+      <section class="result-card is-empty" id="resultCard" aria-live="polite">
+        <div class="empty-state">
+          <div class="walnut-amulet" aria-hidden="true">
+            <span></span>
+            <span></span>
+          </div>
+          <h2>好运签未开</h2>
+          <p>今日气场正在茶盘旁边醒一醒。填好信息后，轻按抽签即可。</p>
+        </div>
+      </section>
+    </section>
+
+    <section class="vision-section" aria-label="AI识图鉴定">
+      <div class="vision-copy">
+        <p class="eyebrow">AI 识图 · 初步参考</p>
+        <h2>AI识图鉴定</h2>
+        <p>上传一张文玩核桃图片，让 AI 从疑似品种、形制、纹路和配对度等角度做娱乐化初步分析。</p>
+      </div>
+
+      <div class="vision-tool">
+        <form class="vision-form" id="visionForm">
+          <label class="upload-box" for="walnutImage">
+            <input id="walnutImage" name="walnutImage" type="file" accept="image/png,image/jpeg,image/webp" required>
+            <span class="upload-icon" aria-hidden="true">图</span>
+            <strong id="uploadTitle">上传核桃图片</strong>
+            <small id="uploadHint">支持 JPG、PNG、WebP，建议使用自然光清晰照片。</small>
+          </label>
+          <div class="preview-wrap is-hidden" id="previewWrap">
+            <img id="imagePreview" alt="已上传的文玩核桃图片预览">
+          </div>
+          <button class="draw-button" type="submit" id="analyzeButton">开始识别</button>
+        </form>
+
+        <section class="ai-result-card is-empty" id="aiResultCard" aria-live="polite">
+          <div class="empty-state compact">
+            <h3>等待上传</h3>
+            <p>识别结果会显示在这里。仅供娱乐和初步参考，不能替代专业鉴定。</p>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>
