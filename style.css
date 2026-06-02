@@ -161,8 +161,7 @@ h1 {
   font-weight: 700;
 }
 
-select,
-input[type="date"] {
+select {
   width: 100%;
   min-height: 46px;
   padding: 0 14px;
@@ -188,8 +187,7 @@ input[type="date"] {
   white-space: nowrap;
 }
 
-select:focus,
-input[type="date"]:focus {
+select:focus {
   border-color: var(--cinnabar);
   box-shadow: 0 0 0 3px rgba(185, 54, 34, 0.16);
 }
@@ -418,6 +416,11 @@ input[type="date"]:focus {
 .value {
   margin: 0;
   line-height: 1.7;
+}
+
+.action-list {
+  display: grid;
+  gap: 6px;
 }
 
 .walnut-name {
