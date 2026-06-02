@@ -4,7 +4,7 @@
 
 项目定位：
 
-- AI 娱乐应用原型
+- 轻量娱乐应用
 - 文玩核桃文化展示页
 - 个性化推荐工具
 - 前端作品集项目
@@ -27,7 +27,6 @@
 - 普通品种推荐约占 70%，异型组合约占 30%；选择稀有、收藏级、霸气时提高异型概率，选择盘玩舒适、性价比、老派经典时优先普通基础品种。
 - 未来基础品种库可以扩展到 200+ 个文玩核桃品种，并支持更多细分品类。
 - 输出推荐理由、今日盘玩建议、幸运颜色和幸运数字。
-- 支持 AI 识图鉴定：上传文玩核桃图片后，调用 `/api/analyze-image` 返回疑似品种、形制特征、纹路特点、配对度评分、盘玩建议、收藏建议和风险提示。
 - 支持重新测算。
 - 响应式布局，适合手机和电脑浏览。
 
@@ -36,8 +35,6 @@
 - HTML
 - CSS
 - JavaScript
-- Vercel Serverless Function
-- Gemini Vision API
 - 无数据库、无构建依赖
 - 可直接部署到 Vercel
 
@@ -55,21 +52,6 @@ python3 -m http.server 8000
 http://localhost:8000
 ```
 
-如果要在本地测试 AI 识图接口，需要使用 Vercel CLI：
-
-```bash
-vercel dev
-```
-
-并在本地或 Vercel 项目中配置环境变量：
-
-```text
-GEMINI_API_KEY=你的 Gemini API Key
-GEMINI_MODEL=gemini-2.0-flash
-```
-
-`GEMINI_MODEL` 可选，也可以改为支持图片理解的 Gemini Flash 模型。
-
 ## 如何部署到 Vercel
 
 1. 将项目上传到 GitHub、GitLab 或 Bitbucket 仓库。
@@ -78,48 +60,7 @@ GEMINI_MODEL=gemini-2.0-flash
 4. Framework Preset 选择 `Other` 或保持默认静态项目配置。
 5. Build Command 留空。
 6. Output Directory 留空或使用默认根目录。
-7. 在 Vercel 项目的 `Settings -> Environment Variables` 中添加 `GEMINI_API_KEY`。
-8. 可选添加 `GEMINI_MODEL`，默认使用 `gemini-2.0-flash`。
-9. 点击 `Deploy` 完成部署。
-
-前端不会直接暴露 API Key，图片识别请求会发送到 Vercel Serverless Function：`/api/analyze-image`。
-
-如果暂时没有配置 `GEMINI_API_KEY`，基础好运签网页仍可正常使用，AI 识图模块会提示“功能开发中”。
-
-## AI 识图接口
-
-接口路径：
-
-```text
-POST /api/analyze-image
-```
-
-请求体：
-
-```json
-{
-  "imageBase64": "图片 base64 字符串",
-  "mimeType": "image/jpeg"
-}
-```
-
-返回结果：
-
-```json
-{
-  "result": {
-    "possibleType": "疑似品种",
-    "shapeFeature": "形制特征",
-    "textureFeature": "纹路特点",
-    "pairScore": 88,
-    "playAdvice": "盘玩建议",
-    "collectionAdvice": "收藏建议",
-    "riskNote": "风险提示"
-  }
-}
-```
-
-识图结果仅供娱乐和初步参考，不能替代专业鉴定。
+7. 点击 `Deploy` 完成部署。
 
 ## 未来可扩展方向
 
@@ -127,6 +68,6 @@ POST /api/analyze-image
 2. 增加文玩核桃百科数据库，补充品类介绍、皮质特点、产地、盘玩难度和适合人群。
 3. 增加收藏价值评级系统，按稀有度、品相、配对难度和市场热度生成评级。
 4. 增加用户收藏夹，保存喜欢的核桃品种和历史抽签结果。
-5. 优化 AI 识图识别核桃品种功能，加入多图对比、识别置信度和图片质量检测。
+5. 后续可探索 AI 图片识别辅助鉴赏功能。
 6. 增加分享海报功能，把结果卡片生成图片，方便分享到朋友圈、小红书或社群。
 7. 增加核桃市场行情展示，呈现价格区间、热度变化和收藏趋势。

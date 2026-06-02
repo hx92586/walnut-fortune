@@ -85,35 +85,6 @@
       </section>
     </section>
 
-    <section class="vision-section" aria-label="AI识图鉴定">
-      <div class="vision-copy">
-        <p class="eyebrow">AI 识图 · 初步参考</p>
-        <h2>AI识图鉴定</h2>
-        <p>上传一张文玩核桃图片，让 AI 从疑似品种、形制、纹路和配对度等角度做娱乐化初步分析。</p>
-      </div>
-
-      <div class="vision-tool">
-        <form class="vision-form" id="visionForm">
-          <label class="upload-box" for="walnutImage">
-            <input id="walnutImage" name="walnutImage" type="file" accept="image/png,image/jpeg,image/webp" required>
-            <span class="upload-icon" aria-hidden="true">图</span>
-            <strong id="uploadTitle">上传核桃图片</strong>
-            <small id="uploadHint">支持 JPG、PNG、WebP，建议使用自然光清晰照片。</small>
-          </label>
-          <div class="preview-wrap is-hidden" id="previewWrap">
-            <img id="imagePreview" alt="已上传的文玩核桃图片预览">
-          </div>
-          <button class="draw-button" type="submit" id="analyzeButton">开始识别</button>
-        </form>
-
-        <section class="ai-result-card is-empty" id="aiResultCard" aria-live="polite">
-          <div class="empty-state compact">
-            <h3>等待上传</h3>
-            <p>识别结果会显示在这里。仅供娱乐和初步参考，不能替代专业鉴定。</p>
-          </div>
-        </section>
-      </div>
-    </section>
   </main>
 
   <script src="./script.js"></script>
