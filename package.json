@@ -1,0 +1,13 @@
+{
+  "name": "walnut-fortune",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "deploy:cos": "node scripts/deploy-cos.mjs",
+    "deploy:cos:website": "node scripts/deploy-cos.mjs --configure-website"
+  },
+  "devDependencies": {
+    "cos-nodejs-sdk-v5": "^2.14.7"
+  }
+}

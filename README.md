@@ -64,6 +64,47 @@ http://localhost:8000
 6. Output Directory 留空或使用默认根目录。
 7. 点击 `Deploy` 完成部署。
 
+## 如何部署到腾讯云 COS
+
+项目内置 `scripts/deploy-cos.mjs`，使用腾讯云官方 `cos-nodejs-sdk-v5` 上传静态文件。
+
+1. 安装依赖：
+
+```bash
+npm install
+```
+
+2. 在本机终端设置腾讯云密钥环境变量：
+
+```bash
+export TENCENTCLOUD_SECRET_ID="你的 SecretId"
+export TENCENTCLOUD_SECRET_KEY="你的 SecretKey"
+```
+
+3. 上传静态文件：
+
+```bash
+npm run deploy:cos
+```
+
+脚本会上传：
+
+- `index.html` -> `text/html; charset=utf-8`
+- `style.css` -> `text/css; charset=utf-8`
+- `script.js` -> `application/javascript; charset=utf-8`
+
+默认不会修改 Bucket 静态网站配置。如果需要由脚本设置静态网站首页和错误页，可运行：
+
+```bash
+npm run deploy:cos:website
+```
+
+当前 COS 静态网站地址：
+
+```text
+https://walnut-fortune-1440450915.cos-website.ap-hongkong.myqcloud.com
+```
+
 ## 未来可扩展方向
 
 1. 接入 Gemini API，生成更丰富、更个性化的好运签文案。
